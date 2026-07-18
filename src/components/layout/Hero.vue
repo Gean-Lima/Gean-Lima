@@ -88,7 +88,7 @@ const isHome = computed(() => props.category === 'home');
                         rel="noopener noreferrer"
                     >
                         Iniciar um projeto
-                        <IconMark name="arrow-up-right" />
+                        <IconMark name="whatsapp" />
                     </a>
                 </div>
             </div>
