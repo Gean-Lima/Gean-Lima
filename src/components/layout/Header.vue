@@ -1,4 +1,6 @@
 <script setup>
+import IconMark from '@/components/ui/IconMark.vue';
+
 defineProps({
     modelValue: {
         type: String,
@@ -14,15 +16,32 @@ const categories = [
     { id: 'systems', label: 'Sistemas Web' },
     { id: 'apps', label: 'Apps' },
 ];
+
+const socialLinks = [
+    {
+        id: 'github',
+        label: 'GitHub',
+        href: 'https://github.com/Gean-Lima',
+        icon: 'github',
+    },
+    {
+        id: 'linkedin',
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/gean-lima-775b491a2/',
+        icon: 'linkedin',
+    },
+    {
+        id: 'whatsapp',
+        label: 'WhatsApp',
+        href: null,
+        icon: 'whatsapp',
+        disabled: true,
+    },
+];
 </script>
 
 <template>
     <header class="site-header">
-        <a class="brand" href="#" aria-label="Gean Lima — início">
-            <span class="brand__mark" aria-hidden="true">G</span>
-            <span class="brand__name">Gean Lima</span>
-        </a>
-
         <nav class="category-nav" aria-label="Categorias do portfólio">
             <button
                 v-for="(category, index) in categories"
@@ -38,20 +57,41 @@ const categories = [
         </nav>
 
         <div class="header-links" aria-label="Redes e contato">
-            <a href="https://github.com/Gean-Lima" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                GH
-            </a>
-            <a href="https://www.linkedin.com/in/gean-lima-775b491a2/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                IN
-            </a>
+            <template v-for="link in socialLinks" :key="link.id">
+                <a
+                    v-if="!link.disabled"
+                    class="header-links__icon-link"
+                    :href="link.href"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    :aria-label="link.label"
+                    :title="link.label"
+                >
+                    <IconMark :name="link.icon" />
+                    <span class="sr-only">{{ link.label }}</span>
+                </a>
+
+                <button
+                    v-else
+                    class="header-links__icon-button"
+                    type="button"
+                    disabled
+                    :aria-label="`${link.label} não configurado`"
+                    :title="`${link.label} não configurado`"
+                >
+                    <IconMark :name="link.icon" />
+                    <span class="sr-only">{{ link.label }}</span>
+                </button>
+            </template>
+
             <a
                 class="header-links__contact"
                 href="https://www.linkedin.com/in/gean-lima-775b491a2/"
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                Vamos conversar
-                <span aria-hidden="true">↗</span>
+                <span>Vamos conversar</span>
+                <IconMark name="arrow-up-right" />
             </a>
         </div>
     </header>
@@ -150,19 +190,45 @@ const categories = [
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
 }
 
-.header-links > a {
+.header-links__icon-link,
+.header-links__icon-button {
+    width: 2.3rem;
+    height: 2.3rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: rgba(11, 13, 14, 0.45);
     color: var(--muted);
-    font: 500 0.64rem/1 'kodemono', monospace;
-    letter-spacing: 0.08em;
     text-decoration: none;
-    transition: color 200ms ease;
+    transition: color 200ms ease, border-color 200ms ease, transform 200ms ease, background 200ms ease;
 }
 
-.header-links > a:hover {
+.header-links__icon-link:hover,
+.header-links__icon-button:hover {
     color: var(--accent);
+    border-color: rgba(199, 255, 73, 0.28);
+    background: rgba(199, 255, 73, 0.04);
+    transform: translateY(-1px);
+}
+
+.header-links__icon-button {
+    padding: 0;
+}
+
+.header-links__icon-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.header-links__icon-link svg,
+.header-links__icon-button svg {
+    width: 1rem;
+    height: 1rem;
 }
 
 .header-links .header-links__contact {
@@ -170,17 +236,37 @@ const categories = [
     padding: 0.75rem 0.9rem;
     border: 1px solid var(--line-strong);
     color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    font: 500 0.64rem/1 'kodemono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
 }
 
-.header-links__contact span {
-    display: inline-block;
-    margin-left: 0.5rem;
+.header-links__contact:hover {
+    border-color: rgba(199, 255, 73, 0.28);
     color: var(--accent);
-    transition: transform 200ms ease;
+    background: rgba(199, 255, 73, 0.03);
 }
 
-.header-links__contact:hover span {
-    transform: translate(2px, -2px);
+.header-links__contact svg {
+    width: 0.95rem;
+    height: 0.95rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 @media (max-width: 900px) {
@@ -209,8 +295,11 @@ const categories = [
         display: none;
     }
 
-    .category-nav__number,
-    .header-links > a:not(.header-links__contact) {
+    .category-nav__number {
+        display: none;
+    }
+
+    .header-links__icon-button {
         display: none;
     }
 
@@ -220,7 +309,14 @@ const categories = [
 }
 
 @keyframes header-in {
-    from { opacity: 0; transform: translateY(-12px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
