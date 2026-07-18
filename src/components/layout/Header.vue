@@ -9,6 +9,7 @@ defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const categories = [
+    { id: 'home', label: 'Início' },
     { id: 'landing', label: 'Landing Pages' },
     { id: 'systems', label: 'Sistemas Web' },
     { id: 'apps', label: 'Apps' },

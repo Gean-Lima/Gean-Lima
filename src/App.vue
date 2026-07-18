@@ -2,9 +2,9 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import Header from '@/components/layout/Header.vue';
 import Hero from '@/components/layout/Hero.vue';
-import Stacks from '@/components/layout/Stacks.vue';
+import Catalog from '@/components/layout/Catalog.vue';
 
-const activeCategory = ref('landing');
+const activeCategory = ref('home');
 let animationFrame;
 
 function moveSpotlight(event) {
@@ -36,7 +36,7 @@ onBeforeUnmount(() => {
     
             <main>
                 <Hero :category="activeCategory" />
-                <Stacks />
+                <Catalog :category="activeCategory" />
             </main>
         </div>
     </div>

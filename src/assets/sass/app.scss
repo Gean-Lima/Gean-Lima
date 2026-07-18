@@ -101,10 +101,11 @@ a:focus-visible {
 
 .portfolio-shell > main {
     width: min(100% - 6vw, 1440px);
-    height: calc(100dvh - var(--header-height));
+    height: calc(100dvh - var(--header-height) - 24px);
     margin: 0 auto;
     display: grid;
-    grid-template-rows: minmax(0, 1fr) var(--strip-height);
+    grid-template-rows: auto minmax(0, 1fr);
+    overflow: hidden;
 }
 
 .ambient {
