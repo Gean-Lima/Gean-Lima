@@ -11,28 +11,24 @@ const props = defineProps({
 
 const content = {
     home: {
-        index: '01',
         kicker: 'Desenvolvedor Full-stack',
         title: ['Gean Lima'],
         description:
             'Desenvolvedor focado em criar aplicações web e mobile consistentes, unindo design intuitivo e arquitetura robusta.',
     },
     landing: {
-        index: '02',
         kicker: 'Design & desenvolvimento',
         title: ['Páginas que', 'fazem acontecer.'],
         description:
             'Landing pages rápidas, autorais e construídas para transformar atenção em resultado.',
     },
     systems: {
-        index: '03',
         kicker: 'Produto & arquitetura',
         title: ['Complexidade,', 'sem complicação.'],
         description:
             'Sistemas web consistentes para organizar processos, dados e decisões do dia a dia.',
     },
     apps: {
-        index: '04',
         kicker: 'Mobile & experiência',
         title: ['Ideias que cabem', 'na palma da mão.'],
         description:
@@ -57,10 +53,7 @@ const isHome = computed(() => props.category === 'home');
     <section class="hero" :class="{ 'hero--home': isHome }" aria-live="polite">
         <Transition name="category" mode="out-in">
             <div :key="category" class="hero__copy">
-                <p class="hero__kicker">
-                    <span>{{ current.index }}</span>
-                    {{ current.kicker }}
-                </p>
+                <p class="hero__kicker">{{ current.kicker }}</p>
 
                 <h1>
                     <span v-for="line in current.title" :key="line">{{ line }}</span>

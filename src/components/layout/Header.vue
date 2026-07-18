@@ -29,14 +29,7 @@ const socialLinks = [
         label: 'LinkedIn',
         href: 'https://www.linkedin.com/in/gean-lima-775b491a2/',
         icon: 'linkedin',
-    },
-    {
-        id: 'whatsapp',
-        label: 'WhatsApp',
-        href: null,
-        icon: 'whatsapp',
-        disabled: true,
-    },
+    }
 ];
 </script>
 
@@ -51,7 +44,6 @@ const socialLinks = [
                 :aria-pressed="modelValue === category.id"
                 @click="emit('update:modelValue', category.id)"
             >
-                <span class="category-nav__number">0{{ index + 1 }}</span>
                 {{ category.label }}
             </button>
         </nav>
@@ -91,7 +83,7 @@ const socialLinks = [
                 rel="noopener noreferrer"
             >
                 <span>Vamos conversar</span>
-                <IconMark name="arrow-up-right" />
+                <IconMark name="whatsapp" />
             </a>
         </div>
     </header>
