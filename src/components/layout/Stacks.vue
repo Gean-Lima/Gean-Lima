@@ -1,260 +1,158 @@
+<script setup>
+const stacks = ['Laravel', 'Vue.js', 'Nuxt', 'Flutter', 'PHP', 'MySQL'];
+</script>
+
 <template>
-    <section id="stacks">
-        <h2>Stacks</h2>
-
-        <div class="stacks-items">
-            <section class="stacks-item">
-                <div>
-                    <img src="/images/php.png" alt="PHP Logo" title="PHP Logo" width="500" height="500" loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>PHP</h3>
-                    <p>Estudo desde de 2018, POO, composer, PSRs básico.</p>
-                </div>
-            </section>
-
-            <section class="stacks-item">
-                <div>
-                    <img src="/images/html.png" alt="HTML5 Logo" title="HTML5 Logo" width="500" height="500"
-                        loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>HTML</h3>
-                    <p>Estudo desde de 2018, semântico básico.</p>
-                </div>
-            </section>
-
-            <section class="stacks-item">
-                <div>
-                    <img src="/images/css.png" alt="CSS3 Logo" title="CSS3 Logo" width="500" height="500" loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>CSS</h3>
-                    <p>Estudo desde de 2018</p>
-                </div>
-            </section>
-
-            <section class="stacks-item">
-                <div>
-                    <img src="/images/javascript.png" alt="JavaScript Logo" title="JavaScript Logo" width="500" height="500"
-                        loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>Javascript</h3>
-                    <p>Estudo desde de 2018, node.js básico, express básico, bots com puppeteer.</p>
-                </div>
-            </section>
-
-            <section class="stacks-item">
-                <div>
-                    <img src="/images/dart.png" alt="Dart Logo" title="Dart Logo" width="500" height="500" loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>Dart</h3>
-                    <p>1 ano de estudo<br />sou bem iniciante.</p>
-                </div>
-            </section>
+    <footer class="profile-strip">
+        <div class="profile-strip__experience">
+            <span class="profile-strip__label">Experiência</span>
+            <p>
+                <strong>2018—Agora</strong>
+                <span class="profile-strip__role">Desenvolvimento full-stack</span>
+                <span class="profile-strip__mobile-stack">Laravel · Vue · Flutter</span>
+            </p>
         </div>
 
-        <h3>Framewokrs</h3>
-
-        <div class="stacks-items frameworks">
-            <section class="stacks-item framework">
-                <div>
-                    <img src="/images/laravel.png" alt="Laravel Logo" title="Laravel Logo" width="500" height="500" loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>Laravel</h3>
-                </div>
-            </section>
-
-            <section class="stacks-item framework">
-                <div>
-                    <img src="/images/livewire.png" alt="Livewire Logo" title="Livewire Logo" width="500" height="500"
-                        loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>Livewire</h3>
-                </div>
-            </section>
-
-            <section class="stacks-item framework">
-                <div>
-                    <img src="/images/vuejs.png" alt="Vue.js Logo" title="Vue.js Logo" width="500" height="500"
-                        loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>Vue.js</h3>
-                </div>
-            </section>
-
-            <section class="stacks-item framework">
-                <div>
-                    <img src="/images/nuxt.png" alt="NUXT Logo" title="NUXT Logo" width="500" height="500"
-                        loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>Nuxt</h3>
-                </div>
-            </section>
-
-            <section class="stacks-item framework">
-                <div>
-                    <img src="/images/alpinejs.png" alt="Alpine.js Logo" title="Alpine.js Logo" width="500" height="500"
-                        loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>Alpine.js</h3>
-                </div>
-            </section>
-
-            <section class="stacks-item framework">
-                <div>
-                    <img src="/images/tailwindcss.png" alt="Tailwindcss Logo" title="Tailwindcss Logo" width="500" height="500" loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>Tailwindcss</h3>
-                </div>
-            </section>
-
-            <section class="stacks-item framework">
-                <div>
-                    <img src="/images/bootstrap.png" alt="Bootstrap Logo" title="Bootstrap Logo" width="500" height="500"
-                        loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>Bootstrap</h3>
-                </div>
-            </section>
-
-            <section class="stacks-item framework">
-                <div>
-                    <img src="/images/flutter.png" alt="Flutter Logo" title="Flutter Logo" width="500" height="500"
-                        loading="lazy" />
-                </div>
-
-                <div>
-                    <h3>Flutter</h3>
-                </div>
-            </section>
+        <div class="profile-strip__stack">
+            <span class="profile-strip__label">Stack principal</span>
+            <ul aria-label="Tecnologias principais">
+                <li v-for="stack in stacks" :key="stack">{{ stack }}</li>
+            </ul>
         </div>
-    </section>
+
+        <a href="https://github.com/Gean-Lima" target="_blank" rel="noopener noreferrer">
+            GitHub
+            <span aria-hidden="true">↗</span>
+        </a>
+    </footer>
 </template>
 
 <style lang="scss">
-@import "@/assets/sass/medias";
-@import "@/assets/sass/colors";
-@import "@/assets/sass/animations";
+.profile-strip {
+    min-height: var(--strip-height);
+    display: grid;
+    grid-template-columns: 0.8fr 1.4fr auto;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    border-top: 1px solid var(--line);
+    animation: strip-in 800ms 450ms var(--ease-out) both;
+}
 
-#stacks {
-    padding: 42px 0;
-    background: $bg;
+.profile-strip__experience,
+.profile-strip__stack {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 1.7vw, 1.5rem);
+}
 
-    h2,
-    &>h3 {
-        font-family: 'matrix';
-        font-size: 3rem;
-        color: white;
-        text-align: center;
-        margin: 0 0 12px 0;
-        animation: 2s rightBottomFontMatrix infinite steps(3, end);
+.profile-strip__label {
+    color: var(--muted);
+    font: 400 0.55rem/1 'kodemono', monospace;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.profile-strip p {
+    margin: 0;
+    overflow: hidden;
+    color: var(--muted-light);
+    font: 400 0.68rem/1.4 'kodemono', monospace;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-strip p strong {
+    margin-right: 0.65rem;
+    color: var(--ink);
+    font-weight: 400;
+}
+
+.profile-strip__mobile-stack {
+    display: none;
+}
+
+.profile-strip ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: clamp(0.65rem, 1.2vw, 1.2rem);
+    list-style: none;
+}
+
+.profile-strip li {
+    color: var(--muted-light);
+    font: 400 0.66rem/1 'kodemono', monospace;
+    white-space: nowrap;
+}
+
+.profile-strip li::before {
+    content: '';
+    width: 3px;
+    aspect-ratio: 1;
+    margin-right: 0.45rem;
+    display: inline-block;
+    border-radius: 50%;
+    background: var(--accent);
+    vertical-align: middle;
+}
+
+.profile-strip > a {
+    color: var(--ink);
+    font: 400 0.65rem/1 'kodemono', monospace;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+}
+
+.profile-strip > a span {
+    display: inline-block;
+    margin-left: 0.4rem;
+    color: var(--accent);
+    transition: transform 200ms ease;
+}
+
+.profile-strip > a:hover span {
+    transform: translate(2px, -2px);
+}
+
+@keyframes strip-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+    .profile-strip {
+        grid-template-columns: 1fr auto;
     }
 
-    &>h3 {
-        font-size: 2rem;
+    .profile-strip__stack {
+        display: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .profile-strip {
+        gap: 0.75rem;
     }
 
-    & div.stacks-items {
-        width: 100%;
-        max-width: $media-lg;
-        margin: 10px auto;
-        padding: 1rem;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 18px;
-
-        &:has(.framework) {
-            flex-direction: row;
-            flex-wrap: wrap;
-            max-width: $media-md;
-
-            .stacks-item.framework {
-                width: calc(50% - 18px) !important;
-
-                h3 {
-                    font-size: 1rem;
-                }
-
-                @media screen and (min-width: $media-md) {
-                    width: min-content !important;                    
-                }
-            }
-
-        }
-
-
-        @media screen and (min-width: $media-md) {
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: flex-start;
-        }
+    .profile-strip__experience {
+        display: grid;
+        gap: 0.4rem;
     }
 
-    .stacks-item {
-        display: flex;
-        gap: 18px;
-        padding: 16px;
-        background: #141414;
-        box-shadow: 3px 3px 0 $color1;
-        width: 100%;
+    .profile-strip p span,
+    .profile-strip p strong {
+        margin-right: 0.35rem;
+    }
 
-        &.framework {
-            width: min-content !important;
-            flex-direction: column-reverse;
-            place-items: center center;
-        }
+    .profile-strip__role {
+        display: none;
+    }
 
-        @media screen and (min-width: $media-md) {
-            width: calc(50% - 18px);
-        }
-
-        @media screen and (min-width: $media-lg) {
-            width: 30%;
-        }
-
-        h3 {
-            margin-top: 0;
-            margin-bottom: 5px;
-            color: white;
-        }
-
-        p {
-            font-size: .8rem;
-            margin: 0;
-            color: white;
-        }
-
-        img {
-            height: 64px;
-            width: 64px;
-            object-fit: contain;
-            object-position: center;
-        }
+    .profile-strip__mobile-stack {
+        display: inline;
     }
 }
 </style>

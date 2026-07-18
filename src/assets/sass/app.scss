@@ -1,26 +1,158 @@
 @import "/css/normalize.css";
 
 @font-face {
-    font-family: 'matrix';
-    src: url(/fonts/Matrix-MZ4P.ttf);
-}
-
-@font-face {
     font-family: 'open-sans';
-    src: url(/fonts/OpenSans-Regular.ttf);
+    src: url('/fonts/OpenSans-Regular.ttf') format('truetype');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'kodemono';
-    src: url(/fonts/KodeMono-Regular.ttf);
+    src: url('/fonts/KodeMono-Regular.ttf') format('truetype');
+    font-display: swap;
 }
 
-* {
-    font-family: 'kodemono';
+:root {
+    --bg: #090b0c;
+    --ink: #eef1e8;
+    --muted-light: #9a9e96;
+    --muted: #686d68;
+    --accent: #c7ff49;
+    --line: rgba(238, 241, 232, 0.1);
+    --line-strong: rgba(238, 241, 232, 0.2);
+    --header-height: clamp(4.5rem, 9vh, 6rem);
+    --strip-height: clamp(4rem, 10vh, 6.25rem);
+    --pointer-x: 62%;
+    --pointer-y: 38%;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    color-scheme: dark;
+    font-synthesis: none;
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+html,
+body,
+#app {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    min-width: 320px;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 button {
-    border: 0;
     cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.portfolio-shell {
+    position: relative;
+    isolation: isolate;
+    height: calc(100dvh - 24px);
+    border-radius: 26px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(199, 255, 73, 0.055), transparent 24rem),
+        linear-gradient(118deg, #090b0c 0%, #0c0f10 52%, #090b0c 100%);
+}
+
+.portfolio-shell::before,
+.portfolio-shell::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+}
+
+.portfolio-shell::before {
+    z-index: -1;
+    inset: 0;
+    opacity: 0.12;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
+}
+
+.portfolio-shell::after {
+    z-index: -2;
+    inset: var(--header-height) 3vw var(--strip-height);
+    border-right: 1px solid rgba(238, 241, 232, 0.035);
+    border-left: 1px solid rgba(238, 241, 232, 0.035);
+}
+
+.portfolio-shell > main {
+    width: min(100% - 6vw, 1440px);
+    height: calc(100dvh - var(--header-height));
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) var(--strip-height);
+}
+
+.ambient {
+    position: absolute;
+    z-index: -1;
+    border: 1px solid rgba(199, 255, 73, 0.08);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.ambient--one {
+    right: -15vw;
+    bottom: -34vw;
+    width: 60vw;
+    aspect-ratio: 1;
+}
+
+.ambient--two {
+    right: -3vw;
+    bottom: -21vw;
+    width: 38vw;
+    aspect-ratio: 1;
+}
+
+@media (max-width: 900px) {
+    :root {
+        --header-height: 7.6rem;
+        --strip-height: 4.5rem;
+    }
+
+    .portfolio-shell > main {
+        width: min(100% - 2rem, 720px);
+    }
+}
+
+@media (max-height: 620px) {
+    :root {
+        --strip-height: 3.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
