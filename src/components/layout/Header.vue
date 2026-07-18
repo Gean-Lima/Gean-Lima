@@ -104,9 +104,9 @@ const socialLinks = [
     width: min(100% - 6vw, 1440px);
     height: var(--header-height);
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid var(--line);
     animation: header-in 800ms var(--ease-out) both;
 }
